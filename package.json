@@ -1,0 +1,21 @@
+{
+  "name": "jclab-qrcode",
+  "version": "1.0.0",
+  "scripts": {},
+  "dependencies": {
+    "one-json": "^2.2.0"
+  },
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jc-lab/jclab-qrcode.git"
+  },
+  "author": "jc-lab",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/jc-lab/jclab-qrcode/issues"
+  },
+  "homepage": "https://github.com/jc-lab/jclab-qrcode#readme",
+  "description": ""
+}
