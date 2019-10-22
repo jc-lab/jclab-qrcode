@@ -1,11 +1,11 @@
 function parse(payload) {
     const footer = ':jclab-wp-qrcode!';
     if(!payload.endsWith(footer)) {
-        return false;
+        return null;
     }
     const beginPos = payload.lastIndexOf('<');
     if(beginPos < 0) {
-        return false;
+        return null;
     }
 
     return Buffer.from(payload.substr(beginPos + 1, (payload.length - footer.length) - beginPos - 1), 'base64');
