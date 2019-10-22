@@ -8,11 +8,12 @@ function parse(payload) {
         return false;
     }
 
-    return payload.substr(beginPos + 1, (payload.length - footer.length) - beginPos - 1);
+    return Buffer.from(payload.substr(beginPos + 1, (payload.length - footer.length) - beginPos - 1), 'base64');
 }
 
 function makeUrlFooter(content) {
-    return '<' + Buffer.from(content).toString('base64') + ':jclab-wp-qrcode!';
+    const buf = Buffer.isBuffer(content) ? content : Buffer.from(content);
+    return '<' + buf.toString('base64') + ':jclab-wp-qrcode!';
 }
 
 function fromCurrentUrl() {
