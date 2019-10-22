@@ -17,7 +17,7 @@ function makeUrlFooter(content) {
 }
 
 function fromCurrentUrl() {
-    return parse(location.href);
+    return parse(decodeURIComponent(location.hash));
 }
 
 module.exports = {
