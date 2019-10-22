@@ -1,17 +1,18 @@
-const oneJson = require('one-json');
-
 function parse(payload) {
     const footer = ':jclab-wp-qrcode!';
     if(!payload.endsWith(footer)) {
         return false;
     }
+    const beginPos = payload.lastIndexOf('<');
+    if(beginPos < 0) {
+        return false;
+    }
 
-    const reverseText = function (text) {
-        return text.split('').reverse().join('');
-    };
+    return payload.substr(beginPos + 1, (payload.length - footer.length) - beginPos - 1);
+}
 
-    let result = oneJson.parse(reverseText(payload.substr(0, payload.length - footer.length)));
-    return result.output;
+function makeUrlFooter(content) {
+    return '<' + Buffer.from(content).toString('base64') + ':jclab-wp-qrcode!';
 }
 
 function fromCurrentUrl() {
@@ -20,5 +21,6 @@ function fromCurrentUrl() {
 
 module.exports = {
     parse,
+    makeUrlFooter,
     fromCurrentUrl
 };

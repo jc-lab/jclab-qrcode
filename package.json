@@ -1,6 +1,6 @@
 {
   "name": "jclab-qrcode",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "scripts": {},
   "dependencies": {
     "one-json": "^2.2.0"
