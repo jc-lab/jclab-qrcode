@@ -1,3 +1,3 @@
-export declare function parse(payload: string): Buffer | null;
-export declare function makeUrlFooter(content: string | Buffer) : string;
-export declare function fromCurrentUrl(): Buffer | null;
+export declare function makeUrlFooter(payload, header, key): string;
+export declare function parse(payload: string): object;
+export declare function fromCurrentUrl(): object;
