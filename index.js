@@ -1,6 +1,6 @@
-const jose = require('jose');
+const jose = require('node-jose');
 const zlib = require('browserify-zlib');
-const querystring = require('querystring');
+const querystring = require('querystring-browser');
 
 function urlBase64Decode(encoded) {
     encoded = encoded.replace('-', '+').replace('_', '/');
@@ -90,14 +90,16 @@ function v1Parse(qrcodeData, key) {
         return {
             version: 1,
             header: verified.protected,
-            payload: verified.payload
+            payload: verified.payload,
+            jws: payload
         };
     }else{
         const tokens = payload.split('.');
         return {
             version: 1,
             header: JSON.parse(urlBase64Decode(tokens[0])),
-            payload: JSON.parse(urlBase64Decode(tokens[1]))
+            payload: JSON.parse(urlBase64Decode(tokens[1])),
+            jws: payload
         }
     }
 }
@@ -114,14 +116,16 @@ function v2Parse(qrcodeData, key) {
         return {
             version: 2,
             header: decompressJsonPayload(verified.protected),
-            payload: decompressJsonPayload(verified.payload)
+            payload: decompressJsonPayload(verified.payload),
+            jws: payload
         };
     }else{
         const tokens = payload.split('.');
         return {
             version: 2,
             header: decompressJsonPayload(JSON.parse(urlBase64Decode(tokens[0]))),
-            payload: decompressJsonPayload(JSON.parse(urlBase64Decode(tokens[1])))
+            payload: decompressJsonPayload(JSON.parse(urlBase64Decode(tokens[1]))),
+            jws: payload
         }
     }
 }
